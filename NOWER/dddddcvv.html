@@ -1,0 +1,2273 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نورها | Nowarha</title>
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ================= VARIABLES ================= */
+        :root {
+            /* Energy & Electricity Theme Colors */
+            --navy: #020617; /* Very deep dark blue/black */
+            --electric-blue: #00E5FF;
+            --electric-blue-glow: rgba(0, 229, 255, 0.4);
+            --yellow: #FFD700;
+            --yellow-glow: rgba(255, 215, 0, 0.4);
+            --white: #FFFFFF;
+            --red: #EF5350;
+            --dark-glass: rgba(15, 23, 42, 0.6);
+            --border-glass: rgba(0, 229, 255, 0.15);
+            --text-muted: rgba(255, 255, 255, 0.7);
+            --shadow-premium: 0 20px 40px rgba(0, 0, 0, 0.6);
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* ================= RESET & TYPOGRAPHY ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--navy);
+            /* Static elegant dark background */
+            background: radial-gradient(circle at top right, #06112a 0%, var(--navy) 100%);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        /* ================= UTILITIES & COMPONENTS ================= */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .text-center { text-align: center; }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--white) 0%, var(--electric-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px var(--electric-blue-glow);
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 4rem auto;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background-color: var(--yellow);
+            color: var(--navy);
+            box-shadow: 0 0 20px var(--yellow-glow);
+            animation: pulse-yellow 2s infinite;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+            background-color: #ffea00;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--electric-blue);
+            border-color: var(--electric-blue);
+            box-shadow: 0 0 10px var(--electric-blue-glow) inset;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--electric-blue-glow);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--electric-blue-glow);
+        }
+
+        @keyframes pulse-yellow {
+            0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 215, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+        }
+
+        /* Glass Cards */
+        .glass-card {
+            background: var(--dark-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 40px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(0, 229, 255, 0.1), transparent);
+            transform: skewX(-20deg);
+            transition: 0.5s;
+        }
+
+        .glass-card:hover::before {
+            left: 150%;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--electric-blue);
+            box-shadow: 0 10px 30px var(--electric-blue-glow);
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ================= NAVIGATION ================= */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        .navbar.scrolled {
+            background: rgba(2, 6, 23, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0, 229, 255, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            text-shadow: 0 0 15px var(--electric-blue-glow);
+        }
+
+        .brand-logo span {
+            color: var(--yellow);
+            text-shadow: 0 0 15px var(--yellow-glow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--electric-blue);
+            text-shadow: 0 0 10px var(--electric-blue-glow);
+        }
+        
+        .nav-links a.nav-highlight {
+            color: var(--yellow);
+            text-shadow: 0 0 10px var(--yellow-glow);
+            animation: pulse-text 2s infinite;
+        }
+
+        @keyframes pulse-text {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--electric-blue);
+            transition: var(--transition);
+            box-shadow: 0 0 10px var(--electric-blue);
+        }
+        
+        .nav-links a.nav-highlight::after {
+            background-color: var(--yellow);
+            box-shadow: 0 0 10px var(--yellow);
+        }
+
+        .nav-links a.active::after, .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 30px;
+            height: 2px;
+            background-color: var(--white);
+            transition: var(--transition);
+        }
+
+        /* ================= PAGES (SPA LOGIC) ================= */
+        .page-view {
+            display: none;
+            min-height: 100vh;
+            padding-top: 100px;
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+
+        .page-view.active-page {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* ================= SECTIONS SPECIFIC ================= */
+
+        /* Hero */
+        .hero-section {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding-top: 0;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to left, var(--white), var(--electric-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Problem Section (Home) */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .problem-card {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .problem-icon-wrapper {
+            width: 100px;
+            height: 100px;
+            background: rgba(0, 229, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px; /* Increased margin below icon */
+            border: 1px solid var(--border-glass);
+            color: var(--electric-blue);
+            transition: var(--transition);
+        }
+
+        .problem-card:hover .problem-icon-wrapper {
+            background: var(--electric-blue-glow);
+            box-shadow: 0 0 20px var(--electric-blue-glow);
+            transform: scale(1.1);
+        }
+
+        .problem-icon-wrapper svg {
+            width: 50px;
+            height: 50px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        .problem-card h3 {
+            font-size: 1.3rem;
+            color: var(--white);
+            line-height: 1.5;
+        }
+
+        /* Quick Features (Home & Features Page) */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: rgba(255, 215, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--yellow);
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+            margin-bottom: 20px; /* Space under icon for grid layouts */
+        }
+        
+        /* Specific margin adjustment for the grid format in the features page */
+        .glass-card .feature-icon {
+            margin-bottom: 25px; /* Added more space between icon and text in features grid */
+        }
+
+        .feature-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .feature-text h3 {
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+            color: var(--electric-blue);
+        }
+
+        .feature-text p {
+            color: var(--text-muted);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.1) 0%, rgba(2, 6, 23, 0) 100%);
+            border-top: 1px solid var(--border-glass);
+            border-bottom: 1px solid var(--border-glass);
+            text-align: center;
+            position: relative;
+        }
+
+        /* App Mockups */
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .mockup-card {
+            text-align: center;
+        }
+
+        .mockup-card img {
+            transition: var(--transition);
+        }
+
+        .mockup-card:hover img {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px var(--electric-blue-glow) !important;
+            border: 1px solid var(--electric-blue);
+        }
+
+        .mockup-label {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 15px;
+            color: var(--yellow);
+        }
+
+        /* Device Section */
+        .device-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .device-list {
+            margin-top: 30px;
+        }
+
+        .device-list li {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .device-list li::before {
+            content: '';
+            display: block;
+            width: 12px;
+            height: 12px;
+            background-color: var(--electric-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--electric-blue);
+        }
+
+        /* Pricing Section */
+        .pricing-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+
+        .pricing-card {
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-top: 4px solid var(--electric-blue);
+        }
+
+        .price-placeholder {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 30px 0;
+            color: var(--white);
+            text-shadow: 0 0 20px var(--electric-blue-glow);
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            margin-bottom: 15px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--dark-glass);
+            border: 1px solid var(--border-glass);
+        }
+
+        .accordion-header {
+            padding: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .accordion-header:hover {
+            background: rgba(0, 229, 255, 0.05);
+            color: var(--electric-blue);
+        }
+
+        .accordion-icon {
+            width: 20px;
+            height: 20px;
+            position: relative;
+        }
+
+        .accordion-icon::before, .accordion-icon::after {
+            content: '';
+            position: absolute;
+            background: var(--electric-blue);
+            transition: var(--transition);
+            box-shadow: 0 0 5px var(--electric-blue);
+        }
+
+        .accordion-icon::before {
+            top: 9px;
+            left: 0;
+            width: 20px;
+            height: 2px;
+        }
+
+        .accordion-icon::after {
+            top: 0;
+            left: 9px;
+            width: 2px;
+            height: 20px;
+        }
+
+        .accordion-item.active .accordion-icon::after {
+            transform: rotate(90deg);
+            opacity: 0;
+        }
+
+        .accordion-item.active .accordion-header {
+            color: var(--yellow);
+        }
+
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            padding: 0 25px;
+        }
+
+        .accordion-item.active .accordion-body {
+            padding-bottom: 25px;
+        }
+
+        .accordion-body p {
+            color: var(--text-muted);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Centered layout */
+            max-width: 600px;
+            margin: 0 auto;
+            gap: 30px;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            border-radius: 16px;
+            background: var(--dark-glass);
+            border: 1px solid var(--border-glass);
+            transition: var(--transition);
+        }
+
+        .contact-card:hover {
+            border-color: var(--electric-blue);
+            background: rgba(0, 229, 255, 0.05);
+            box-shadow: 0 0 15px var(--electric-blue-glow);
+        }
+
+        .contact-card svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--electric-blue);
+        }
+
+        /* ================= SIMULATION GAME (NEW FLEX LAYOUT) ================= */
+        .simulation-wrapper {
+            display: flex;
+            flex-wrap: wrap; /* Allows stacking naturally on small screens */
+            gap: 40px;
+            background: var(--dark-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 30px;
+            padding: 40px;
+            min-height: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sim-instructions {
+            width: 100%;
+            flex: 0 0 100%;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .sim-instructions h3 {
+            color: var(--yellow);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Physical World (Left Side on Desktop / Top on Mobile) */
+        .sim-physical {
+            flex: 1 1 350px;
+            max-width: 100%;
+            background: linear-gradient(to bottom, #1e293b, #0f172a);
+            border-radius: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            border: 2px solid rgba(255,255,255,0.05);
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
+            min-height: 550px;
+            overflow: hidden;
+        }
+
+        .sim-wall-socket {
+            width: 120px;
+            height: 120px;
+            background: #cbd5e1;
+            border-radius: 20px;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5), inset 0 -5px 10px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            border: 2px solid #94a3b8;
+            transition: var(--transition);
+        }
+        
+        .sim-wall-socket::before, .sim-wall-socket::after {
+            content: '';
+            width: 15px;
+            height: 15px;
+            background: #0f172a;
+            border-radius: 50%;
+            position: absolute;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.8);
+        }
+        
+        .sim-wall-socket::before { left: 30px; }
+        .sim-wall-socket::after { right: 30px; }
+
+        .sim-device-container {
+            position: absolute;
+            bottom: 250px; /* Starting position */
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 2;
+            cursor: pointer;
+        }
+        
+        .sim-device-container.plugged {
+            bottom: calc(100% - 145px); /* Move up to socket */
+        }
+
+        .sim-device {
+            width: 140px;
+            height: 160px;
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            border-radius: 15px;
+            border: 2px solid var(--electric-blue);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6), 0 0 20px var(--electric-blue-glow);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+            transition: var(--transition);
+        }
+        
+        .sim-device-logo {
+            color: var(--white);
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-shadow: 0 0 5px var(--electric-blue);
+        }
+
+        .sim-device-indicator {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #333;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        
+        .sim-device-indicator.active {
+            background: var(--electric-blue);
+            box-shadow: 0 0 15px var(--electric-blue);
+        }
+        
+        /* Device Pins */
+        .sim-device::before, .sim-device::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            width: 12px;
+            height: 20px;
+            background: #94a3b8;
+            border-radius: 5px 5px 0 0;
+            border: 1px solid #64748b;
+            border-bottom: none;
+        }
+        .sim-device::before { left: 35px; }
+        .sim-device::after { right: 35px; }
+        
+        /* Device internal socket for bulb */
+        .sim-device-socket {
+            width: 60px;
+            height: 20px;
+            background: #020617;
+            position: absolute;
+            bottom: 10px;
+            border-radius: 10px;
+            box-shadow: inset 0 5px 10px rgba(0,0,0,0.8);
+        }
+
+        /* Digital World (Right Side on Desktop / Bottom on Mobile) */
+        .sim-digital {
+            flex: 1 1 350px;
+            max-width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .sim-phone {
+            width: 100%;
+            max-width: 300px;
+            height: 580px;
+            background: #020617;
+            border-radius: 40px;
+            border: 12px solid #1e293b;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 20px rgba(0,229,255,0.1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+        
+        .sim-phone::before { /* Notch */
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 120px; height: 25px;
+            background: #1e293b;
+            border-radius: 0 0 15px 15px;
+            z-index: 10;
+        }
+
+        .sim-app-header {
+            background: rgba(15, 23, 42, 0.9);
+            padding: 40px 20px 15px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-glass);
+        }
+        
+        .sim-app-header h4 {
+            color: var(--white);
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+        
+        .sim-app-header h4 span { color: var(--electric-blue); }
+
+        .sim-app-body {
+            flex: 1;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: radial-gradient(circle at center, rgba(0,229,255,0.05), transparent 70%);
+            overflow-y: auto;
+        }
+
+        /* Budget Section */
+        .sim-budget-container {
+            width: 100%;
+            background: rgba(0,0,0,0.4);
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid var(--border-glass);
+            margin-bottom: 15px;
+        }
+        
+        .sim-budget-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        
+        .sim-progress-bar {
+            height: 8px;
+            background: #1e293b;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .sim-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--electric-blue);
+            transition: width 0.3s, background-color 0.3s;
+        }
+
+        /* Budget Edit Mode */
+        .sim-edit-btn {
+            color: var(--electric-blue);
+            cursor: pointer;
+            text-decoration: underline;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+        .sim-edit-btn:hover { color: var(--yellow); }
+        
+        .sim-budget-edit {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        .sim-budget-edit input {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--electric-blue);
+            color: var(--white);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            outline: none;
+            font-family: monospace;
+        }
+        .sim-budget-edit button {
+            background: var(--electric-blue);
+            color: var(--navy);
+            border: none;
+            padding: 4px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .sim-budget-edit button:hover { background: var(--yellow); }
+
+        /* AI Assistant Section */
+        .sim-ai-chat {
+            width: 100%;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            background: rgba(0, 229, 255, 0.05);
+            border: 1px solid var(--electric-blue);
+            padding: 12px;
+            border-radius: 15px 15px 15px 2px;
+            box-shadow: 0 5px 15px rgba(0,229,255,0.1);
+        }
+        
+        .sim-ai-icon { font-size: 1.5rem; }
+        
+        .sim-ai-text {
+            font-size: 0.85rem;
+            color: var(--white);
+            line-height: 1.4;
+        }
+
+        /* Physical World alignment fix */
+        .sim-bulb-container {
+            position: absolute;
+            bottom: 40px; 
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 3;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .sim-bulb-container.plugged {
+            bottom: calc(100% - 260px); /* Aligns top of bulb base exactly with device socket bottom */
+        }
+        
+        .sim-bulb-base {
+            width: 40px;
+            height: 35px;
+            background: repeating-linear-gradient(
+              to bottom,
+              #94a3b8,
+              #94a3b8 5px,
+              #64748b 5px,
+              #64748b 10px
+            );
+            border-radius: 10px 10px 0 0; /* Base is at the top now */
+            position: relative;
+            z-index: -1;
+            top: 5px;
+            transition: var(--transition);
+        }
+        
+        .sim-bulb {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.3);
+            position: relative;
+            box-shadow: inset 0 0 20px rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+
+        .sim-bulb.on {
+            background: #fff9c4;
+            border-color: var(--yellow);
+            box-shadow: 0 0 60px var(--yellow), inset 0 0 40px var(--yellow);
+        }
+
+        .sim-label {
+            background: rgba(0,0,0,0.7);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            pointer-events: none;
+            border: 1px solid var(--border-glass);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .sim-status {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,0,0,0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+        
+        .sim-status-dot {
+            width: 10px; height: 10px;
+            background: var(--red);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--red);
+        }
+        
+        .sim-status.online .sim-status-dot {
+            background: var(--electric-blue);
+            box-shadow: 0 0 10px var(--electric-blue);
+        }
+
+        .sim-power-btn {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #1e293b;
+            border: 4px solid #334155;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            pointer-events: none; /* Disabled by default */
+            opacity: 0.5;
+        }
+        
+        .sim-power-btn.ready {
+            pointer-events: auto;
+            opacity: 1;
+            border-color: var(--electric-blue);
+        }
+
+        .sim-power-btn.active {
+            background: rgba(0, 229, 255, 0.1);
+            border-color: var(--yellow);
+            box-shadow: 0 0 30px var(--yellow-glow), inset 0 0 20px var(--yellow-glow);
+        }
+        
+        .sim-power-btn svg {
+            width: 50px; height: 50px;
+            stroke: #64748b;
+            fill: none;
+            stroke-width: 2;
+            transition: 0.3s;
+        }
+        
+        .sim-power-btn.ready svg { stroke: var(--electric-blue); }
+        .sim-power-btn.active svg { stroke: var(--yellow); filter: drop-shadow(0 0 5px var(--yellow)); }
+
+        /* Dashboard App Grid */
+        .sim-stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            width: 100%;
+            margin-bottom: 15px;
+            margin-top: 25px;
+        }
+        
+        .sim-stat-box {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--border-glass);
+            border-radius: 15px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .sim-stat-val {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--white);
+            font-family: monospace;
+            line-height: 1.2;
+            text-shadow: 0 0 10px rgba(255,255,255,0.2);
+            transition: color 0.3s;
+        }
+        
+        .sim-stat-val.active { color: var(--yellow); text-shadow: 0 0 15px var(--yellow-glow); }
+        .sim-stat-lbl { color: var(--text-muted); font-size: 0.8rem; }
+
+
+        /* Custom Toast Notification */
+        #toast-box {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--electric-blue);
+            color: var(--navy);
+            padding: 15px 25px;
+            border-radius: 12px;
+            font-weight: 700;
+            box-shadow: 0 10px 30px var(--electric-blue-glow);
+            transform: translateX(150%);
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #toast-box.show {
+            transform: translateX(0);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(2, 6, 23, 0.8);
+            border-top: 1px solid var(--border-glass);
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo span {
+            color: var(--electric-blue);
+            text-shadow: 0 0 10px var(--electric-blue-glow);
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .made-in {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* ================= IMAGE LIGHTBOX MODAL ================= */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: rgba(2, 6, 23, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            padding-top: 0;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 16px;
+            box-shadow: 0 0 40px var(--electric-blue-glow);
+            transform: scale(0.8);
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            object-fit: contain;
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: var(--white);
+            font-size: 40px;
+            font-weight: bold;
+            transition: var(--transition);
+            cursor: pointer;
+            z-index: 10000;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+        }
+
+        .modal-close:hover {
+            color: var(--electric-blue);
+            background: rgba(0, 229, 255, 0.1);
+            transform: scale(1.1);
+        }
+        
+        .clickable-img {
+            cursor: zoom-in;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 1024px) {
+            .hero-content h1 { font-size: 2.8rem; }
+            .hero-grid, .device-grid, .contact-grid { gap: 40px; }
+            .app-grid { grid-template-columns: repeat(2, 1fr); }
+            .features-grid { grid-template-columns: 1fr; }
+            .simulation-wrapper { padding: 30px 20px; gap: 30px; }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: flex; }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(2, 6, 23, 0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                align-items: center;
+                padding: 40px 0;
+                gap: 25px;
+                clip-path: circle(0% at 100% 0);
+                transition: all 0.6s cubic-bezier(0.8, 0, 0.2, 1);
+                border-bottom: 1px solid var(--border-glass);
+            }
+
+            .nav-links.active {
+                clip-path: circle(150% at 100% 0);
+            }
+
+            .mobile-menu-btn.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); background-color: var(--electric-blue); }
+            .mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
+            .mobile-menu-btn.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); background-color: var(--electric-blue); }
+
+            .hero-grid, .device-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-image { order: -1; }
+            .device-image { order: -1; }
+            
+            .hero-content h1 { font-size: 2.2rem; }
+            .section-title { font-size: 2rem; }
+            
+            .problem-grid { grid-template-columns: 1fr; }
+            .hero-buttons { flex-direction: column; width: 100%; }
+            .btn { width: 100%; }
+            
+            /* Enhanced Simulation layout for Tablets/Mobiles */
+            .simulation-wrapper { padding: 25px 15px; gap: 40px; }
+            .sim-physical { min-height: 550px; }
+            .sim-phone { 
+                max-width: 320px; 
+                margin: 0 auto; 
+            }
+        }
+
+        @media (max-width: 480px) {
+            .app-grid { grid-template-columns: 1fr; }
+            
+            /* Ultimate Mobile Fixes for Simulation Game (Flex Stack) */
+            .simulation-wrapper { 
+                padding: 20px 10px; 
+                gap: 30px; 
+            }
+            
+            .sim-physical { 
+                min-height: 450px; 
+                padding: 30px 10px;
+                border-radius: 15px;
+            }
+            
+            /* Scale Down All Physical Elements Cleanly */
+            .sim-wall-socket { transform: scale(0.85); }
+            .sim-device-container { 
+                bottom: 160px; 
+                transform: scale(0.85); 
+                transform-origin: bottom center; 
+            }
+            .sim-device-container.plugged { bottom: calc(100% - 130px); }
+            .sim-bulb-container { 
+                bottom: 15px; 
+                transform: scale(0.85); 
+                transform-origin: bottom center; 
+            }
+            .sim-bulb-container.plugged { bottom: calc(100% - 240px); }
+            
+            /* Optimize App view on very small screens */
+            .sim-phone { 
+                width: 100%; 
+                max-width: 290px;
+                height: 550px; 
+            }
+            .sim-power-btn { width: 90px; height: 90px; }
+            .sim-power-btn svg { width: 40px; height: 40px; }
+            .sim-stat-val { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Custom Toast Message -->
+    <div id="toast-box">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        <span id="toast-msg">تمت العملية بنجاح</span>
+    </div>
+
+    <!-- ================= IMAGE LIGHTBOX ================= -->
+    <div id="image-modal" class="modal-overlay">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modal-image">
+    </div>
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="brand-logo" onclick="navigateTo('home')">
+                نورها <span></span>
+            </div>
+            
+            <nav class="nav-links" id="nav-links">
+                <a onclick="navigateTo('home')" class="active" data-target="home">الرئيسية</a>
+                <a onclick="navigateTo('features')" data-target="features">المميزات</a>
+                <a onclick="navigateTo('app')" data-target="app">التطبيق</a>
+                <a onclick="navigateTo('device')" data-target="device">الجهاز</a>
+                <a onclick="navigateTo('simulation')" data-target="simulation" class="nav-highlight">جرب بنفسك 🎮</a>
+                <a onclick="navigateTo('pricing')" data-target="pricing">الأسعار</a>
+                <a onclick="navigateTo('faq')" data-target="faq">الأسئلة الشائعة</a>
+                <a onclick="navigateTo('about')" data-target="about">عن نورها</a>
+                <a onclick="navigateTo('volunteer')" data-target="volunteer">التطوع</a>
+                <a onclick="navigateTo('contact')" data-target="contact">تواصل معنا</a>
+            </nav>
+
+            <div class="mobile-menu-btn" id="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= MAIN CONTENT (SPA) ================= -->
+    <main id="app-root">
+
+        <!-- 1. HOME PAGE -->
+        <div id="home" class="page-view active-page">
+            <!-- Hero Section -->
+            <section class="hero-section section-padding">
+                <div class="container hero-grid">
+                    <div class="hero-content reveal">
+                        <h1>تحكم في استهلاكك.. <br>ووفر <span style="color: var(--yellow);">طاقتك</span> وفلوسك</h1>
+                        <p>نورها تساعدك على متابعة استهلاك الكهرباء لحظة بلحظة ومعرفة تكلفة كل جهاز والتحكم في مصروفك الشهري بسهولة.</p>
+                        <div class="hero-buttons">
+                            <a onclick="navigateTo('simulation')" class="btn btn-primary">جرب نورها الآن</a>
+                            <a onclick="navigateTo('features')" class="btn btn-outline">اعرف المزيد</a>
+                        </div>
+                    </div>
+                    <div class="hero-image reveal" style="transition-delay: 0.2s;">
+                        <img src="5839415872286560107.jpg" alt="جهاز نورها" class="glass-card" style="width: 100%; max-width: 500px; padding: 0; display: block; margin: 0 auto; box-shadow: 0 0 40px var(--electric-blue-glow); border-color: var(--electric-blue);" onerror="this.src='https://placehold.co/600x500/020617/00E5FF?text=Device+Image'">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem Section -->
+            <section class="section-padding">
+                <div class="container">
+                    <h2 class="section-title text-center reveal">ليه نورها؟</h2>
+                    <div class="problem-grid mt-5">
+                        <div class="glass-card problem-card reveal">
+                            <div class="problem-icon-wrapper">
+                                <!-- Icon: High Bill / Lightning Document -->
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                    <path d="M13 12l-2 3h4l-2 4"></path>
+                                </svg>
+                            </div>
+                            <h3>فاتورة الكهرباء أعلى من المتوقع؟</h3>
+                        </div>
+                        <div class="glass-card problem-card reveal" style="transition-delay: 0.1s;">
+                            <div class="problem-icon-wrapper">
+                                <!-- Icon: Unknown Consumption / Plug Search -->
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"></path>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                    <path d="M11 8v4"></path>
+                                    <path d="M11 16h.01"></path>
+                                </svg>
+                            </div>
+                            <h3>مش عارف مين بيسحب كهربا أكتر؟</h3>
+                        </div>
+                        <div class="glass-card problem-card reveal" style="transition-delay: 0.2s;">
+                            <div class="problem-icon-wrapper">
+                                <!-- Icon: Saving / Lightbulb Shield -->
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    <path d="M9.5 10a2.5 2.5 0 1 1 5 0c0 1.5-1.5 2-1.5 3v1h-2v-1c0-1-1.5-1.5-1.5-3z"></path>
+                                    <line x1="12" y1="16" x2="12" y2="16.01"></line>
+                                </svg>
+                            </div>
+                            <h3>بتحاول توفر ومش عارف تبدأ منين؟</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Features -->
+            <section class="section-padding" style="background: rgba(0, 229, 255, 0.02);">
+                <div class="container">
+                    <div class="features-grid">
+                        <div class="feature-item reveal">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                            </div>
+                            <div class="feature-text">
+                                <h3>متابعة مباشرة للاستهلاك</h3>
+                                <p>راقب استهلاك منزلك في الوقت الفعلي عبر التطبيق كالنبض الكهربائي.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item reveal" style="transition-delay: 0.1s;">
+                            <div class="feature-icon" style="color: var(--electric-blue); background: rgba(0,229,255,0.1); border-color: rgba(0,229,255,0.2);">
+                                <svg viewBox="0 0 24 24"><path d="M12 1v22"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                            </div>
+                            <div class="feature-text">
+                                <h3>معرفة تكلفة كل جهاز</h3>
+                                <p>حدد الأجهزة الأكثر استهلاكاً وتكلفتها بالجنيه.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item reveal" style="transition-delay: 0.2s;">
+                            <div class="feature-icon" style="color: var(--electric-blue); background: rgba(0,229,255,0.1); border-color: rgba(0,229,255,0.2);">
+                                <svg viewBox="0 0 24 24"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path><path d="M4 6v12a2 2 0 0 0 2 2h14v-4"></path><path d="M18 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"></path></svg>
+                            </div>
+                            <div class="feature-text">
+                                <h3>ميزانية ذكية</h3>
+                                <p>ضع حداً أقصى للفاتورة وسنقوم بتنبيهك عند الاقتراب منه.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item reveal" style="transition-delay: 0.3s;">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 2v10l4.5-4.5"></path><path d="M12 2v10l-4.5-4.5"></path><circle cx="12" cy="12" r="10"></circle></svg>
+                            </div>
+                            <div class="feature-text">
+                                <h3>مساعد طاقة ذكي</h3>
+                                <p>نصائح مخصصة لنمط استهلاكك لتقليل الفاتورة بكفاءة.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section section-padding">
+                <div class="container reveal">
+                    <h2 class="section-title">ابدأ رحلتك مع نورها النهارده</h2>
+                    <p class="section-subtitle">انضم للآلاف من الأسر المصرية التي تتحكم في فواتيرها بذكاء  .</p>
+                    <a onclick="navigateTo('pricing')" class="btn btn-primary">اطلب جهاز نورها</a>
+                </div>
+            </section>
+        </div>
+
+        <!-- 2. FEATURES PAGE -->
+        <div id="features" class="page-view">
+            <section class="section-padding">
+                <div class="container">
+                    <div class="text-center reveal">
+                        <h1 class="section-title">مميزات نورها</h1>
+                        <p class="section-subtitle">كل ما تحتاجه للتحكم الكامل في استهلاكك للكهرباء في مكان واحد بطاقة ذكية.</p>
+                    </div>
+
+                    <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                        <div class="glass-card reveal text-center d-flex flex-column align-items-center">
+                            <div class="feature-icon mb-4" style="margin: 0 auto 25px auto;"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
+                            <h3>متابعة الاستهلاك</h3>
+                            <p class="text-muted mt-2">راقب معدل استهلاكك بالكيلو وات لحظة بلحظة، وتعرف على أوقات الذروة في منزلك.</p>
+                        </div>
+                        <div class="glass-card reveal text-center d-flex flex-column align-items-center" style="transition-delay: 0.1s;">
+                            <div class="feature-icon mb-4" style="margin: 0 auto 25px auto; color:var(--electric-blue)"><svg viewBox="0 0 24 24"><path d="M12 1v22"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div>
+                            <h3>معرفة التكلفة</h3>
+                            <p class="text-muted mt-2">تحويل الكيلو وات إلى جنيه مصري بناءً على شرائح الكهرباء الحالية لتعرف فاتورتك المتوقعة.</p>
+                        </div>
+                        <div class="glass-card reveal text-center d-flex flex-column align-items-center" style="transition-delay: 0.2s;">
+                            <div class="feature-icon mb-4" style="margin: 0 auto 25px auto;"><svg viewBox="0 0 24 24"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path><path d="M4 6v12a2 2 0 0 0 2 2h14v-4"></path></svg></div>
+                            <h3>إدارة الميزانية</h3>
+                            <p class="text-muted mt-2">حدد ميزانيتك الشهرية واحصل على إشعارات فورية لتجنب الدخول في شرائح استهلاك أعلى.</p>
+                        </div>
+                        <div class="glass-card reveal text-center d-flex flex-column align-items-center" style="transition-delay: 0.3s;">
+                            <div class="feature-icon mb-4" style="margin: 0 auto 25px auto; color:var(--electric-blue)"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg></div>
+                            <h3>التحليلات الذكية</h3>
+                            <p class="text-muted mt-2">تقارير يومية وأسبوعية وشهرية توضح أنماط استهلاكك بوضوح وتساعدك على تحسينها.</p>
+                        </div>
+                        <div class="glass-card reveal text-center d-flex flex-column align-items-center" style="transition-delay: 0.4s;">
+                            <div class="feature-icon mb-4" style="margin: 0 auto 25px auto;"><svg viewBox="0 0 24 24"><path d="M18.36 6.64a9 9 0 1 1-12.73 0M12 2v10"></path></svg></div>
+                            <h3>التحكم بالأجهزة</h3>
+                            <p class="text-muted mt-2">تعرف على حالة الأجهزة ومقدار ما يسحبه كل جهاز بشكل منفصل بفضل التقنيات المتقدمة.</p>
+                        </div>
+                        <div class="glass-card reveal text-center d-flex flex-column align-items-center" style="transition-delay: 0.5s;">
+                            <div class="feature-icon mb-4" style="margin: 0 auto 25px auto; color:var(--electric-blue)"><svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"></path><path d="M12 3v2"></path></svg></div>
+                            <h3>تنبيهات كهربائية</h3>
+                            <p class="text-muted mt-2">إشعارات فورية في حال ترك أجهزة تعمل لفترات طويلة أو حدوث استهلاك غير طبيعي للطاقة.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 3. APP PAGE -->
+        <div id="app" class="page-view">
+            <section class="section-padding">
+                <div class="container">
+                    <div class="text-center reveal">
+                        <h1 class="section-title">تطبيق نورها</h1>
+                        <p class="section-subtitle">بيتك بين ايدك بتصميم عصري يسهل عليك قراءة بياناتك والتحكم فيها.</p>
+                    </div>
+
+                    <div class="app-grid mt-5">
+                        <div class="mockup-card reveal">
+                            <img src="Scre11111enshot_1.png" alt="الرئيسية" style="width: 100%; border-radius: 30px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.6);" onerror="this.src='https://placehold.co/300x600/020617/00E5FF?text=App+Home'">
+                            <h3 class="mockup-label">الرئيسية</h3>
+                        </div>
+                        <div class="mockup-card reveal" style="transition-delay: 0.1s;">
+                            <img src="Screen222222222shot_1.png" alt="الأجهزة" style="width: 100%; border-radius: 30px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.6);" onerror="this.src='https://placehold.co/300x600/020617/00E5FF?text=App+Devices'">
+                            <h3 class="mockup-label">الأجهزة</h3>
+                        </div>
+                        <div class="mockup-card reveal" style="transition-delay: 0.2s;">
+                            <img src="Scre333333enshot_1.png" alt="الميزانية" style="width: 100%; border-radius: 30px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.6);" onerror="this.src='https://placehold.co/300x600/020617/00E5FF?text=App+Budget'">
+                            <h3 class="mockup-label">الميزانية</h3>
+                        </div>
+                        <div class="mockup-card reveal" style="transition-delay: 0.3s;">
+                            <img src="Screens4444444444hot_1.png" alt="مساعد نورها" style="width: 100%; border-radius: 30px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.6);" onerror="this.src='https://placehold.co/300x600/020617/00E5FF?text=App+Assistant'">
+                            <h3 class="mockup-label">مساعد نورها</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 4. DEVICE PAGE -->
+        <div id="device" class="page-view">
+            <section class="section-padding">
+                <div class="container device-grid">
+                    <div class="device-content reveal">
+                        <h1 class="section-title">مع نورها... وفرها </h1>
+                        <p style="font-size: 1.2rem; color: var(--text-muted);">بيتابع استهلاك الكهرباء ويساعدك توفر في فاتورتك. يركب بسهولة في لوحة الكهرباء الرئيسية بدون تكسير أو تعديلات معقدة.</p>
+                        
+                        <ul class="device-list">
+                            <li><strong>كيف يعمل نورها :</strong>يتم توصيله بالجهاز مباشرة لالتقاط النبضات الكهربائية</li>
+                            <li><strong>مميزات الجهاز:</strong> دقة عالية في القراءة، آمن تماماً، ومصنوع من مواد غير قابلة للاشتعال.</li>
+                            <li><strong>سهولة الاستخدام:</strong> تركيب في دقائق، يتصل بشبكة الواي فاي المنزلية، ويبدأ العمل فوراً.</li>
+                        </ul>
+                        
+                        <div class="mt-5 pt-4">
+                            <a onclick="navigateTo('pricing')" class="btn btn-primary">اطلب دلوقتي</a>
+                        </div>
+                    </div>
+                    <div class="device-image reveal" style="transition-delay: 0.2s;">
+                        <img src="5839415872286560107.jpg" alt="تفاصيل جهاز نورها" class="glass-card" style="width: 100%; max-width: 500px; padding: 0; display: block; margin: 0 auto; border-color: var(--electric-blue); box-shadow: 0 0 30px var(--electric-blue-glow);" onerror="this.src='https://placehold.co/600x600/020617/00E5FF?text=Device+Details'">
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 5. INTERACTIVE GAME PAGE (NEW) -->
+        <div id="simulation" class="page-view">
+            <section class="section-padding">
+                <div class="container reveal">
+                    <div class="text-center mb-5">
+                        <h1 class="section-title">تجربة نورها التفاعلية 🎮</h1>
+                        <p class="section-subtitle" style="font-size: 1.2rem; color: var(--yellow);">العب معنا واكتشف كيف يعمل جهاز نورها بخطوات بسيطة.</p>
+                    </div>
+
+                    <div class="simulation-wrapper">
+                        <!-- Instructions Header -->
+                        <div class="sim-instructions" id="sim-instructions">
+                            <h3>الخطوة 1: اضغط على جهاز نورها لتركيبه في الفيشة</h3>
+                        </div>
+
+                        <!-- Left Side: Physical Connection -->
+                        <div class="sim-physical">
+                            <!-- Wall Socket -->
+                            <div class="sim-wall-socket"></div>
+
+                            <!-- Nowarha Device -->
+                            <div class="sim-device-container" id="sim-device" onclick="handleSimClick('device')">
+                                <div class="sim-label" id="lbl-device">جهاز نورها (اضغط للتركيب/الفصل)</div>
+                                <div class="sim-device">
+                                    <div class="sim-device-logo">نورها</div>
+                                    <div class="sim-device-indicator" id="sim-dev-light"></div>
+                                    <div class="sim-device-socket"></div>
+                                </div>
+                            </div>
+
+                            <!-- Lightbulb -->
+                            <div class="sim-bulb-container" id="sim-bulb" onclick="handleSimClick('bulb')">
+                                <div class="sim-label" id="lbl-bulb">اللمبة</div>
+                                <div class="sim-bulb-base"></div> <!-- Base reversed to top -->
+                                <div class="sim-bulb" id="sim-bulb-light"></div>
+                            </div>
+                        </div>
+
+                        <!-- Right Side: Digital App -->
+                        <div class="sim-digital">
+                            <div class="sim-phone">
+                                <div class="sim-app-header">
+                                    <h4>تطبيق <span>نورها</span></h4>
+                                </div>
+                                <div class="sim-app-body">
+                                    <!-- Status -->
+                                    <div class="sim-status" id="sim-app-status">
+                                        <div class="sim-status-dot"></div>
+                                        <span id="sim-status-text">غير متصل بالجهاز</span>
+                                    </div>
+                                    
+                                    <!-- Power Button -->
+                                    <div class="sim-power-btn" id="sim-power-btn" onclick="toggleSimPower()">
+                                        <svg viewBox="0 0 24 24"><path d="M18.36 6.64a9 9 0 1 1-12.73 0M12 2v10"></path></svg>
+                                    </div>
+                                    
+                                    <!-- Stats Grid -->
+                                    <div class="sim-stats-grid">
+                                        <div class="sim-stat-box">
+                                            <div class="sim-stat-val" id="sim-watt-value">0</div>
+                                            <div class="sim-stat-lbl">واط (الاستهلاك)</div>
+                                        </div>
+                                        <div class="sim-stat-box">
+                                            <div class="sim-stat-val" id="sim-cost-value">0.00</div>
+                                            <div class="sim-stat-lbl">جنيه (التكلفة)</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Budget Progress -->
+                                    <div class="sim-budget-container">
+                                        <div class="sim-budget-header" id="sim-budget-display">
+                                            <span>الميزانية اليومية (<span id="sim-budget-val">10</span> ج)</span>
+                                            <span class="sim-edit-btn" onclick="toggleBudgetEdit()">تعديل</span>
+                                        </div>
+                                        
+                                        <!-- Edit Budget Mode (Hidden by default) -->
+                                        <div class="sim-budget-edit" id="sim-budget-edit" style="display: none;">
+                                            <input type="number" id="sim-budget-input" value="10" min="1" step="1">
+                                            <button onclick="saveSimBudget()">حفظ</button>
+                                        </div>
+                                        
+                                        <div class="sim-progress-bar">
+                                            <div class="sim-progress-fill" id="sim-budget-fill"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- AI Assistant -->
+                                    <div class="sim-ai-chat">
+                                        <div class="sim-ai-icon">🤖</div>
+                                        <div class="sim-ai-text" id="sim-ai-text">المساعد الذكي: في انتظار تركيب جهاز نورها لبدء التحليل...</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 6. PRICING PAGE -->
+        <div id="pricing" class="page-view">
+            <section class="section-padding">
+                <div class="container text-center reveal">
+                    <h1 class="section-title">الأسعار</h1>
+                    <p class="section-subtitle">استثمار بسيط النهاردة، توفير مستمر في طاقة المستقبل.</p>
+                    
+                    <div class="pricing-wrapper mt-5">
+                        <div class="glass-card pricing-card">
+                            <h3 style="color: var(--electric-blue); text-shadow: 0 0 10px var(--electric-blue-glow);">باقة مع نورها وفرها </h3>
+                            <p class="text-muted mt-2">تشمل الجهاز والتطبيق بجميع المميزات</p>
+                            
+                            <div class="price-placeholder">
+                                السعر قريباً
+                            </div>
+                            
+                            <ul style="text-align: right; margin-bottom: 30px; display: inline-block;">
+                                <li style="margin-bottom: 10px;">✓ جهاز نورها الأساسي</li>
+                                <li style="margin-bottom: 10px;">✓ اشتراك التطبيق مدى الحياة</li>
+                                <li style="margin-bottom: 10px;">✓ تحديثات دورية لتحليلات الطاقة</li>
+                                <li style="margin-bottom: 10px;">✓ دعم فني متميز</li>
+                            </ul>
+                            
+                            <button class="btn btn-primary" style="width: 100%;">اطلب الآن</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 7. FAQ PAGE -->
+        <div id="faq" class="page-view">
+            <section class="section-padding">
+                <div class="container reveal">
+                    <div class="text-center">
+                        <h1 class="section-title">الأسئلة الشائعة</h1>
+                        <p class="section-subtitle">إجابات سريعة على أهم استفساراتك حول إدارة الكهرباء.</p>
+                    </div>
+
+                    <div class="faq-container mt-5">
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                هل نورها آمنة على التمديدات الكهربائية؟
+                                <div class="accordion-icon"></div>
+                            </div>
+                            <div class="accordion-body">
+                                <p>نعم، جهاز نورها مصمم وفقاً لأعلى معايير الأمان العالمية ومصنوع من مواد مقاومة للحرارة، ولا يتدخل في مسار الكهرباء الأساسي بل يقوم بقراءتها من الخارج بذكاء (Non-invasive).</p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                هل تعمل مع العداد الكودي؟
+                                <div class="accordion-icon"></div>
+                            </div>
+                            <div class="accordion-body">
+                                <p>نعم بكل تأكيد، نورها تعمل بكفاءة مع العداد الكودي وتساعدك على متابعة الرصيد المتبقي بدقة لتجنب انقطاع الكهرباء المفاجئ.</p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                هل تعمل مع العداد التقليدي؟
+                                <div class="accordion-icon"></div>
+                            </div>
+                            <div class="accordion-body">
+                                <p>نعم، نورها متوافقة مع كافة أنواع العدادات، سواء الكودية أو التقليدية القديمة لترجمة الاستهلاك إلى أرقام واضحة.</p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                هل أحتاج إنترنت؟
+                                <div class="accordion-icon"></div>
+                            </div>
+                            <div class="accordion-body">
+                                <p>نعم، يحتاج الجهاز للاتصال بشبكة الواي فاي المنزلية ليتمكن من إرسال القراءات لتطبيق الهاتف لتتمكن من متابعتها من أي مكان في العالم.</p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                هل أستطيع التحكم في الأجهزة وفصل التيار؟
+                                <div class="accordion-icon"></div>
+                            </div>
+                            <div class="accordion-body">
+                               <p>نعم</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 8. ABOUT PAGE -->
+        <div id="about" class="page-view">
+            <section class="section-padding">
+                <div class="container reveal">
+                    <div class="text-center">
+                        <h1 class="section-title">عن نورها </h1>
+                    </div>
+                    
+                    <div class="glass-card mt-5" style="max-width: 900px; margin: 0 auto; box-shadow: 0 0 30px rgba(0, 229, 255, 0.1);">
+                        <p style="font-size: 1.3rem; text-align: center; margin-bottom: 40px; color: var(--white); text-shadow: 0 0 5px var(--electric-blue-glow);">
+                           نورها مشروع مصري ذكي بيخليك تعرف كل جهاز في بيتك بيسحب كهربا وطاقة قد إيه، وتتحكم فيه بسهولة علشان تقلل مصاريف الكهرباء وتوفر فلوسك.
+                        </p>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; border-top: 1px solid var(--border-glass); padding-top: 40px;">
+                            <div>
+                                <h3 style="color: var(--electric-blue); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l3-9 5 18 3-9h5"/></svg>
+                                    رؤيتنا
+                                </h3>
+                                <p class="text-muted">أن نصبح المنصة الأولى لإدارة الطاقة المنزلية في مصر والشرق الأوسط، وأن نجعل كل منزل ذكياً وموفراً للطاقة الكهربائية.</p>
+                            </div>
+                            <div>
+                                <h3 style="color: var(--yellow); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                                    رسالتنا
+                                </h3>
+                                <p class="text-muted">تمكين المستخدمين من السيطرة على نفقاتهم من خلال توفير بيانات طاقة دقيقة، سهلة الفهم، وقابلة للتطبيق لتحسين كفاءة الاستهلاك.</p>
+                            </div>
+                            <div>
+                                <h3 style="color: var(--electric-blue); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                                    أهدافنا
+                                </h3>
+                                <p class="text-muted">خفض الفواتير الشهرية للمشتركين، نشر الوعي بثقافة ترشيد الاستهلاك الكهربائي، والمساهمة في تقليل الأحمال على الشبكة القومية للكهرباء.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 9. CONTACT PAGE -->
+        <div id="contact" class="page-view">
+            <section class="section-padding">
+                <div class="container reveal">
+                    <div class="text-center">
+                        <h1 class="section-title">تواصل معنا</h1>
+                        <p class="section-subtitle">نحن هنا لمساعدتك والإجابة على كافة استفساراتك حول نظام إدارة الطاقة الخاص بنا.</p>
+                    </div>
+
+                    <div class="contact-grid mt-5">
+                        <div class="contact-methods">
+                            <a href="https://www.facebook.com/share/1RoQ8r4gHP/" target="_blank" class="contact-card">
+                                <!-- Facebook Icon -->
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                                <div>
+                                    <h4 style="color: var(--white); margin-bottom: 5px;">فيسبوك</h4>
+                                    <p class="text-muted" style="font-size: 0.9rem;">تابع أحدث أخبارنا على صفحتنا</p>
+                                </div>
+                            </a>
+
+                            <a href="https://www.instagram.com/nowarha_1?igsh=Nzk0M2lkbGR2bGN6" target="_blank" class="contact-card">
+                                <!-- Instagram Icon -->
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                                <div>
+                                    <h4 style="color: var(--white); margin-bottom: 5px;">إنستجرام</h4>
+                                    <p class="text-muted" style="font-size: 0.9rem;">شاهد يومياتنا ونصائحنا للتوفير</p>
+                                </div>
+                            </a>
+
+                            <a href="https://www.tiktok.com/@nowarhaa?_r=1&_t=ZS-96cs3Tcj9qz" target="_blank" class="contact-card">
+                                <!-- TikTok Icon -->
+                                <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12.525.02c1.31-.02 2.61-.01 3.91.04.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                                <div>
+                                    <h4 style="color: var(--white); margin-bottom: 5px;">تيك توك</h4>
+                                    <p class="text-muted" style="font-size: 0.9rem;">تابع فيديوهاتنا التعليمية للكهرباء</p>
+                                </div>
+                            </a>
+
+                            <a href="mailto:nowarhaa1@gmail.com" class="contact-card">
+                                <!-- Email Icon -->
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                <div>
+                                    <h4 style="color: var(--white); margin-bottom: 5px;">البريد الإلكتروني</h4>
+                                    <p class="text-muted" style="font-size: 0.9rem; direction: ltr; text-align: right;">nowarhaa1@gmail.com</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 10. VOLUNTEER PAGE -->
+        <div id="volunteer" class="page-view">
+            <section class="section-padding">
+                <div class="container reveal">
+                    <div class="text-center">
+                        <h1 class="section-title">التطوع في نورها</h1>
+                        <p class="section-subtitle">كن جزءاً من التغيير وساهم في نشر وعي ترشيد استهلاك الطاقة.</p>
+                    </div>
+
+                    <div class="glass-card mt-5 text-center" style="max-width: 700px; margin: 0 auto; padding: 60px 40px; border-top: 4px solid var(--yellow);">
+                        <div style="color: var(--yellow); margin-bottom: 25px; display: inline-flex; background: rgba(255, 215, 0, 0.1); padding: 20px; border-radius: 50%; box-shadow: 0 0 20px var(--yellow-glow);">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        </div>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 15px; color: var(--white);">انضم لفريق المتطوعين</h3>
+                        <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 40px; line-height: 1.8;">
+                            نحن نبحث دائماً عن طاقات شبابية شغوفة بالتكنولوجيا والطاقة. للتطوع في نورها، يرجى تسجيل بياناتك من خلال جوجل فورم، وسيقوم فريقنا بالتواصل معك في أقرب وقت.
+                        </p>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeyP-ZwECy1uw-U8nAxhNgDKZ6Ep9oc5j8glXTy-oL1bj-4eA/viewform?usp=publish-editor" target="_blank" class="btn btn-primary" style="font-size: 1.2rem; padding: 15px 40px; display: inline-flex; align-items: center; gap: 10px;">
+                            سجل في جوجل فورم هنا
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <div class="container">
+            <img src="logo.png" alt="لوجو نورها" style="height: 60px; margin: 0 auto 20px auto; display: block; filter: drop-shadow(0 0 10px var(--electric-blue));" onerror="this.src='https://placehold.co/150x60/020617/00E5FF?text=NOWARHA'">
+            <div class="footer-logo">نورها | <span>Nowarha</span></div>
+            <p class="footer-text">Made in Egypt with ⚡ Energy</p>
+            <p class="made-in">جميع الحقوق محفوظة &copy; <span id="year"></span></p>
+        </div>
+    </footer>
+
+    <!-- ================= JAVASCRIPT ================= -->
+    <script>
+        // Set Current Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // 1. Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // 2. Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navLinks = document.getElementById('nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        const navItems = document.querySelectorAll('.nav-links a');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // 3. SPA Routing Logic (Single Page Navigation)
+        function navigateTo(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-view');
+            pages.forEach(page => {
+                page.classList.remove('active-page');
+            });
+
+            // Show selected page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active-page');
+            }
+
+            // Update active state in navbar
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('data-target') === pageId) {
+                    item.classList.add('active');
+                }
+            });
+
+            // Scroll to top smoothly
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+            // Trigger animations for the newly visible page
+            triggerAnimations();
+        }
+
+        // 4. FAQ Accordion Logic
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all other accordions
+                document.querySelectorAll('.accordion-item').forEach(acc => {
+                    acc.classList.remove('active');
+                    acc.querySelector('.accordion-body').style.maxHeight = null;
+                });
+
+                // Toggle current accordion
+                if (!isActive) {
+                    item.classList.add('active');
+                    const body = item.querySelector('.accordion-body');
+                    body.style.maxHeight = body.scrollHeight + "px";
+                }
+            });
+        });
+
+        // 5. Scroll Reveal Animations (Intersection Observer)
+        function triggerAnimations() {
+            const reveals = document.querySelectorAll('.active-page .reveal');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            reveals.forEach(reveal => {
+                reveal.classList.remove('active');
+                observer.observe(reveal);
+            });
+        }
+
+        // 6. Interactive Game Logic (State Machine)
+        // States: 0=Initial, 1=Device Plugged, 2=Bulb Plugged, 3=Turned ON
+        let gameState = 0; 
+        let simInterval;
+        let currentWatts = 0;
+        let currentCost = 0.00;
+        let dailyBudget = 10; // Default budget
+        
+        // Budget Feature Logic
+        function toggleBudgetEdit() {
+            document.getElementById('sim-budget-display').style.display = 'none';
+            document.getElementById('sim-budget-edit').style.display = 'flex';
+        }
+
+        function saveSimBudget() {
+            const inputVal = document.getElementById('sim-budget-input').value;
+            if(inputVal && inputVal > 0) {
+                dailyBudget = parseFloat(inputVal);
+                document.getElementById('sim-budget-val').innerText = dailyBudget;
+                
+                // Update UI immediately based on new budget
+                updateBudgetUI();
+                
+                const toast = document.getElementById('toast-box');
+                document.getElementById('toast-msg').innerText = "تم تحديث الميزانية بنجاح!";
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 3000);
+            }
+            document.getElementById('sim-budget-edit').style.display = 'none';
+            document.getElementById('sim-budget-display').style.display = 'flex';
+        }
+
+        function updateBudgetUI() {
+            const budgetFill = document.getElementById('sim-budget-fill');
+            const aiText = document.getElementById('sim-ai-text');
+            
+            let progress = (currentCost / dailyBudget) * 100;
+            if(progress > 100) progress = 100;
+            budgetFill.style.width = progress + '%';
+            
+            if (progress > 80) {
+                budgetFill.style.background = "var(--red)";
+                if(gameState === 3) aiText.innerText = "⚠️ تنبيه من المساعد: اقتربت من تخطي ميزانيتك اليومية! حاول إطفاء اللمبة.";
+            } else if (progress > 50) {
+                budgetFill.style.background = "var(--yellow)";
+                if(gameState === 3) aiText.innerText = "💡 نصيحة المساعد: استبدال المصابيح العادية بـ LED يوفر حتى 80% من التكلفة.";
+            } else {
+                budgetFill.style.background = "var(--electric-blue)";
+                if(gameState === 3) aiText.innerText = "✅ المساعد: استهلاكك ممتاز ومستقر ومطابق لميزانيتك.";
+            }
+        }
+        
+        function handleSimClick(entity) {
+            const instructions = document.getElementById('sim-instructions');
+            const deviceObj = document.getElementById('sim-device');
+            const bulbObj = document.getElementById('sim-bulb');
+            const devLight = document.getElementById('sim-dev-light');
+            
+            const appStatus = document.getElementById('sim-app-status');
+            const statusText = document.getElementById('sim-status-text');
+            const powerBtn = document.getElementById('sim-power-btn');
+            const aiText = document.getElementById('sim-ai-text');
+            
+            // Show toast helper
+            const showSimToast = (msg) => {
+                const toast = document.getElementById('toast-box');
+                document.getElementById('toast-msg').innerText = msg;
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 3000);
+            };
+
+            if (entity === 'device') {
+                if (gameState === 0) {
+                    // Plug device in
+                    deviceObj.classList.add('plugged');
+                    document.getElementById('lbl-device').style.display = 'none';
+                    
+                    setTimeout(() => {
+                        devLight.classList.add('active'); 
+                        appStatus.classList.add('online');
+                        statusText.innerText = "الجهاز متصل (بدون حمل)";
+                        aiText.innerText = "أهلاً بك! أنا مساعد نورها الذكي، قم بتركيب اللمبة لنجرب.";
+                        instructions.innerHTML = "<h3>ممتاز! الخطوة 2: اضغط على اللمبة لتركيبها بالجهاز</h3>";
+                        gameState = 1;
+                        showSimToast("تم توصيل الجهاز بنجاح!");
+                    }, 600);
+                } else {
+                    // Unplug device
+                    if (gameState === 3) toggleSimPower(); // Turn off first if on
+                    
+                    deviceObj.classList.remove('plugged');
+                    bulbObj.classList.remove('plugged');
+                    devLight.classList.remove('active');
+                    appStatus.classList.remove('online');
+                    statusText.innerText = "غير متصل بالجهاز";
+                    aiText.innerText = "المساعد الذكي: في انتظار تركيب جهاز نورها لبدء التحليل...";
+                    
+                    powerBtn.classList.remove('ready');
+                    document.getElementById('lbl-device').style.display = 'block';
+                    document.getElementById('lbl-bulb').style.display = 'block';
+                    instructions.innerHTML = "<h3>الخطوة 1: اضغط على جهاز نورها لتركيبه في الفيشة</h3>";
+                    gameState = 0;
+                    showSimToast("تم فصل الجهاز من الكهرباء.");
+                }
+            } 
+            else if (entity === 'bulb') {
+                if (gameState === 1) {
+                    // Plug bulb in
+                    bulbObj.classList.add('plugged');
+                    document.getElementById('lbl-bulb').style.display = 'none';
+                    
+                    setTimeout(() => {
+                        statusText.innerText = "جاهز للاستخدام";
+                        powerBtn.classList.add('ready');
+                        aiText.innerText = "اللمبة متصلة وتتعرف على الشريحة، يمكنك تشغيلها الآن لمراقبة الاستهلاك.";
+                        instructions.innerHTML = "<h3>رائع! الخطوة 3: استخدم التطبيق لتشغيل اللمبة ومراقبة الاستهلاك</h3>";
+                        gameState = 2;
+                        showSimToast("تم تركيب اللمبة!");
+                    }, 600);
+                } else if (gameState === 2 || gameState === 3) {
+                    // Unplug bulb
+                    if (gameState === 3) toggleSimPower(); // Turn off first if on
+                    
+                    bulbObj.classList.remove('plugged');
+                    powerBtn.classList.remove('ready');
+                    statusText.innerText = "الجهاز متصل (بدون حمل)";
+                    aiText.innerText = "تم فصل اللمبة، يمكنك تجربة تركيبها مرة أخرى.";
+                    
+                    document.getElementById('lbl-bulb').style.display = 'block';
+                    instructions.innerHTML = "<h3>اضغط على اللمبة لتركيبها مرة أخرى، أو اضغط على الجهاز لفصله</h3>";
+                    gameState = 1;
+                    showSimToast("تم فصل اللمبة من الجهاز.");
+                } else {
+                    showSimToast("يجب تركيب جهاز نورها في الحائط أولاً!");
+                }
+            }
+        }
+
+        function toggleSimPower() {
+            if (gameState < 2) return; 
+            
+            const powerBtn = document.getElementById('sim-power-btn');
+            const bulbLight = document.getElementById('sim-bulb-light');
+            const wattValue = document.getElementById('sim-watt-value');
+            const costValue = document.getElementById('sim-cost-value');
+            const budgetFill = document.getElementById('sim-budget-fill');
+            const aiText = document.getElementById('sim-ai-text');
+            
+            if (gameState === 2) {
+                // Turn ON
+                powerBtn.classList.add('active');
+                bulbLight.classList.add('on');
+                wattValue.classList.add('active');
+                costValue.classList.add('active');
+                
+                gameState = 3;
+                currentWatts = 0;
+                
+                // Animation loop for real-time stats
+                simInterval = setInterval(() => {
+                    if(currentWatts < 15) currentWatts += 1; // Simulate 15W LED bulb
+                    
+                    currentCost += 0.05; // Simulate cost increment over time
+                    
+                    wattValue.innerText = currentWatts;
+                    costValue.innerText = currentCost.toFixed(2);
+                    
+                    // Update Budget Progress (Dynamic calculation)
+                    updateBudgetUI();
+                    
+                }, 300); // Speed up for demonstration purposes
+                
+            } else if (gameState === 3) {
+                // Turn OFF
+                powerBtn.classList.remove('active');
+                bulbLight.classList.remove('on');
+                wattValue.classList.remove('active');
+                costValue.classList.remove('active');
+                
+                clearInterval(simInterval);
+                wattValue.innerText = "0";
+                aiText.innerText = "تم إيقاف التشغيل. تم حفظ قراءة الاستهلاك وإضافتها لفاتورتك بنجاح.";
+                
+                gameState = 2;
+            }
+        }
+
+        // 7. Image Lightbox Logic
+        const modal = document.getElementById("image-modal");
+        const modalImg = document.getElementById("modal-image");
+        const closeBtn = document.querySelector(".modal-close");
+
+        // Select all images we want to enlarge (App mockups, device images, hero images)
+        const imagesToZoom = document.querySelectorAll('.mockup-card img, .hero-image img, .device-image img');
+        
+        imagesToZoom.forEach(img => {
+            img.classList.add('clickable-img');
+            img.addEventListener('click', function() {
+                modal.style.display = "flex";
+                setTimeout(() => {
+                    modal.classList.add('show');
+                }, 10);
+                modalImg.src = this.src; 
+            });
+        });
+
+        // Function to close the modal
+        function closeModal() {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = "none";
+            }, 300); // Wait for transition to finish
+        }
+
+        closeBtn.onclick = closeModal;
+
+        modal.onclick = function(e) {
+            if (e.target !== modalImg) {
+                closeModal();
+            }
+        };
+
+        // Initialize animations on load
+        document.addEventListener('DOMContentLoaded', () => {
+            triggerAnimations();
+        });
+    </script>
+</body>
+</html>
